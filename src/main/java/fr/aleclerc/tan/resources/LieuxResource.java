@@ -8,32 +8,30 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.sshd.server.pam.PAMPasswordAuthenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import fr.aleclerc.tan.clients.ArretClient;
-import fr.aleclerc.tan.pojo.Arret;
+import fr.aleclerc.tan.clients.LieuClient;
+import fr.aleclerc.tan.pojo.Lieu;
 
 @Component
-@Path("/arrets")
-public class ArretResource {
+@Path("/lieux")
+public class LieuxResource {
 
 	@Autowired
-	private ArretClient client;
+	private LieuClient client;
 	
 	@GET
 	@Path("test")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Arret> getArret() {
-		return client.getArret();
+	public List<Lieu> getArret() {
+		return client.getArrets();
 	}
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Arret> getArret(@QueryParam("longitude") String longitude, @QueryParam("latitude") String latitude) {
-		
-		return client.getArret(longitude, latitude);
+	public List<Lieu> getArret(@QueryParam("longitude") String longitude, @QueryParam("latitude") String latitude) {
+		return client.getArrets(longitude, latitude);
 	}
 
 }

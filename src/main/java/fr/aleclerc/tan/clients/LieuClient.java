@@ -1,7 +1,5 @@
 package fr.aleclerc.tan.clients;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -10,11 +8,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
-import fr.aleclerc.tan.pojo.Arret;
-import fr.aleclerc.tan.pojo.ArretList;
+import fr.aleclerc.tan.pojo.LieuList;
 
 @Component
-public class ArretClient {
+public class LieuClient {
 
 	private Client client;
 
@@ -23,18 +20,24 @@ public class ArretClient {
 		client = ClientBuilder.newClient();
 	}
 
-	public ArretList getArret() {
+	public LieuList getArrets() {
 		WebTarget target = client.target("http://open.tan.fr/ewp/arrets.json/47,21661/-1,556754");
-		ArretList bean =target.request(MediaType.APPLICATION_JSON_TYPE)
-				    .get(ArretList.class);
+		LieuList bean =target.request(MediaType.APPLICATION_JSON_TYPE)
+				    .get(LieuList.class);
 		return bean;
 		
 	}
 
-	public List<Arret> getArret(String longitude, String latitude) {
+	public LieuList getArrets(String longitude, String latitude) {
 		WebTarget target = client.target("http://open.tan.fr/ewp/arrets.json").path(latitude).path(longitude);
-		ArretList bean =target.request(MediaType.APPLICATION_JSON_TYPE)
-				    .get(ArretList.class);
+		LieuList bean =target.request(MediaType.APPLICATION_JSON_TYPE)
+				    .get(LieuList.class);
 		return bean;
 	}
+//	public Arret getArret(String codeLieu) {
+//		WebTarget target = client.target("http://open.tan.fr/ewp/tempsattente.json").path(codeLieu);
+//		Arret bean =target.request(MediaType.APPLICATION_JSON_TYPE)
+//				    .get(Arret.class);
+//		return bean;
+//	}
 }

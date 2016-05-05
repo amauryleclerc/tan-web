@@ -2,7 +2,7 @@ package fr.aleclerc.tan.pojo;
 
 import java.util.ArrayList;
 
-public class ArretList extends ArrayList<Arret> {
+public class LieuList extends ArrayList<Lieu> {
 
 	/**
 	 * 
