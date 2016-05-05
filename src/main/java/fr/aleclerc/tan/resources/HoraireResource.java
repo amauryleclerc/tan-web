@@ -1,7 +1,5 @@
 package fr.aleclerc.tan.resources;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -11,20 +9,20 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import fr.aleclerc.tan.clients.AttenteClient;
-import fr.aleclerc.tan.pojo.Attente;
+import fr.aleclerc.tan.clients.HoraireClient;
+import fr.aleclerc.tan.pojo.Horaires;
 
 @Component
-@Path("/attentes/{codeLieu}")
-public class AttenteResource {
+@Path("/horaires/{codeArret}/{numLigne}/{sens}")
+public class HoraireResource {
 
 	@Autowired
-	private AttenteClient client;
+	private HoraireClient client;
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Attente> getArret(@PathParam("codeLieu") String codeLieu) {
-		return client.getAttentes(codeLieu);
+	public Horaires getArret(@PathParam("codeArret") String codeArret,@PathParam("numLigne") String numLigne,@PathParam("sens") String sens) {
+		return client.getHoraires(codeArret, numLigne, sens);
 	
 	}
 
