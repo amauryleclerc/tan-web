@@ -22,7 +22,7 @@ public class LieuxResource {
 	private LieuClient client;
 	
 	@GET
-	@Path("test")
+	@Path("all")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Lieu> getArret() {
 		return client.getArrets();
